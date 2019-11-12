@@ -1,0 +1,62 @@
+.cat-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px 40px 20px 30px;
+    background: whitesmoke;
+    border: 1px solid #aaa;
+}
+
+.cat-form p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cat-form label, .cat-form legend {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 300px;
+}
+
+.cat-form input:not([type=checkbox]), .cat-form select {
+    width: 100%;
+    height: 35px;
+    font-size: 1.1em;
+}
+
+.cat-form input[type=range] {
+    width: calc(100% - 20px);
+    margin-right: 10px;
+}
+
+.cat-form input[type=checkbox] {
+    font-size: 1.2em;
+    height: 35px;
+    width: 35px;
+    margin: 0;
+    margin-right: 8px;
+}
+
+label.horizontally-centered, .horizontally-centered {
+    display: flex;
+    align-items: center;
+}
+
+.cat-form button {
+    margin-top: 10px;
+    height: 35px;
+    width: 150px;
+    max-width: 100%;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: 1px solid white;
+    background: steelblue;
+    color: white;
+    opacity: 0.9;
+    overflow: hidden;
+}
+
+.cat-form button:hover {
+    opacity: 1;
+}

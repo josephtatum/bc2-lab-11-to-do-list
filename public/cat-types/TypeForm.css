@@ -1,0 +1,20 @@
+
+.type-form-section {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #aaa;
+}
+
+.type-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.type-form input {
+    flex-grow: 1;
+}
+
+.type-form input, .type-form button {
+    font-size: 1.1em;
+}

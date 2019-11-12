@@ -1,0 +1,41 @@
+
+.cat-item {
+    height: 200px;
+    border: 1px solid #aaa;
+    background-color: white;
+}
+
+.cat-item a {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: initial;
+}
+
+.cat-item h2 {
+    font-size: 1.5em;
+    margin-top: 8px;
+}
+
+.cat-item .cat-type {
+    font-size: .8em;
+    color: #555;
+}
+
+.cat-item .year {
+    font-size: .8em;
+}
+
+.image-container {
+    height: 50%;
+}
+
+.image-container img {
+    height: 100%;
+    object-fit: contain;
+}
