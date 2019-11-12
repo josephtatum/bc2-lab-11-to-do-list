@@ -9,9 +9,8 @@ class TodoList extends Component {
         const onRemove = this.props.onRemove;
 
         todos.forEach(todo => {
-            let listItem = document.createElement('li');
-            listItem.textContent = todo.task;
-            list.appendChild(listItem);
+            let listItem = new TodoItem(todo);
+            list.appendChild(listItem.renderDOM());
         });
 
         

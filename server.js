@@ -65,8 +65,12 @@ app.put('/api/todos/:id', async (req, res) => {
 
     try {
         const result = await client.query(`
-            
-        `, [/* pass in data */]);
+            UPDATE todos
+            SET    task = $2,
+                   complete = $3
+            WHERE  id = $1
+            RETURNING *;
+        `, [id, todo.task, todo.complete]);
      
         res.json(result.rows[0]);
     }

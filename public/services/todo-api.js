@@ -29,7 +29,14 @@ export async function addTodo(todo) {
 }
 
 export function updateTodo(todo) {  
-    
+    const url = `${URL}/types/${todo.id}`;
+    return fetchWithError(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(todo)
+    });
 }
 
 export function removeTodo(todoId) {  
