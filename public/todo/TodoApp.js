@@ -26,7 +26,6 @@ class TodoApp extends Component {
         // initial todo load:
         try {
             const todos = await getTodos();
-            
             toDoList.update({ todos });
         }
         catch (err) {

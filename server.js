@@ -40,12 +40,14 @@ app.get('/api/todos', async (req, res) => {
 
 app.post('/api/todos', async (req, res) => {
     const todo = req.body;
-
+    
     try {
         const result = await client.query(`
-            
+            INSERT INTO todos (task, complete)
+            VALUES ($1, $2)
+            RETURNING *;
         `,
-        [/* pass in data */]);
+        [todo.task, todo.complete]);
 
         res.json(result.rows[0]);
     }

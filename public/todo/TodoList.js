@@ -18,7 +18,7 @@ class TodoList extends Component {
     }
     renderHTML() {
         return /*html*/`
-            <ul></ul>
+            <ul class="todo-list"></ul>
         `;
     }
 }
