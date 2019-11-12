@@ -23,11 +23,11 @@ app.use(express.json()); // enable reading incoming json data
 app.get('/api/todos', async (req, res) => {
 
     try {
-        const result = await client.query(`
-            
+        const todos = await client.query(`
+            SELECT * FROM todos
         `);
 
-        res.json(result.rows);
+        res.json(todos.rows);
     }
     catch (err) {
         console.log(err);

@@ -24,7 +24,8 @@ class AddTodo extends Component {
     renderHTML() {
         return /*html*/`
             <form>
-                
+                <input type="text" class="todo-input">
+                <button>Add Todo</button>
             </form>
         `;
     }

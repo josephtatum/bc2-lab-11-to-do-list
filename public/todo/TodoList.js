@@ -8,11 +8,17 @@ class TodoList extends Component {
         const onUpdate = this.props.onUpdate;
         const onRemove = this.props.onRemove;
 
+        todos.forEach(todo => {
+            let listItem = document.createElement('li');
+            listItem.textContent = todo.task;
+            list.appendChild(listItem);
+        });
+
         
     }
     renderHTML() {
         return /*html*/`
-            
+            <ul></ul>
         `;
     }
 }

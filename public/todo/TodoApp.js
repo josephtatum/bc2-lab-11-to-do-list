@@ -15,11 +15,19 @@ class TodoApp extends Component {
         const error = dom.querySelector('.error');
 
         const loading = new Loading({ loading: true });
-        dom.appendChild(loading.renderDOM());
+        main.appendChild(loading.renderDOM());
+
+        const addToDo = new AddTodo();
+        main.appendChild(addToDo.renderDOM());
+
+        const toDoList = new TodoList({ todos: [] });
+        main.appendChild(toDoList.renderDOM());
 
         // initial todo load:
         try {
+            const todos = await getTodos();
             
+            toDoList.update({ todos });
         }
         catch (err) {
             // display error...
