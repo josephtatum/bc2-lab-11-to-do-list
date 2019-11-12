@@ -16,13 +16,9 @@ class AddTodo extends Component {
                 complete: false
             };
 
-            console.log(newTodo);
-
             try {
-                await addTodo(newTodo);
+                const saved = await addTodo(newTodo);
                 // this only runs if no error:
-                form.reset();
-                document.activeElement.blur();
                 window.location = `todo.html`;
             }
             catch (err) {

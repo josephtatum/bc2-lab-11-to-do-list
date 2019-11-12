@@ -29,7 +29,7 @@ export async function addTodo(todo) {
 }
 
 export function updateTodo(todo) {  
-    const url = `${URL}/types/${todo.id}`;
+    const url = `${URL}/todos/${todo.id}`;
     return fetchWithError(url, {
         method: 'PUT',
         headers: {

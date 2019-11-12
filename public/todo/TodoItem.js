@@ -5,18 +5,19 @@ class TodoItem extends Component {
 
     onRender(dom) {
 
-        const todo = this.props;
+        const todo = this.props.todo;
+        const onUpdate = this.props.onUpdate;
+
         dom.innerHTML = todo.task;
 
         let markCompleteButton = document.createElement('button');
         markCompleteButton.textContent = 'Mark as Complete';
         dom.appendChild(markCompleteButton);
 
-        markCompleteButton.addEventListener('click', () => {
-            markCompleteButton.textContent = 'Complete';
-            let params = new URLSearchParams(window.location.search);
-            params.set('id', todo.id);
-            updateTodo(todo);
+        markCompleteButton.addEventListener('click', async () => {
+            todo.complete = !todo.complete;
+            const updated = await updateTodo(todo);
+
         });
 
         let deleteButton = document.createElement('button');
@@ -24,8 +25,7 @@ class TodoItem extends Component {
         dom.appendChild(deleteButton);
 
         deleteButton.addEventListener('click', () => {
-            markCompleteButton.textContent = 'Complete';
-            markCompleteButton.disabled = true;
+            
         });
     }
 
