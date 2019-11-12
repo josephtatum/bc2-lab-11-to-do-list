@@ -15,6 +15,14 @@ class TodoItem extends Component {
         dom.appendChild(markCompleteButton);
 
         markCompleteButton.addEventListener('click', async () => {
+            if (!todo.complete) {
+                markCompleteButton.textContent = 'Complete';
+                dom.style.textDecoration = 'line-through';
+            } else {
+                markCompleteButton.textContent = 'Mark as Complete';
+                dom.style.textDecoration = 'none';
+            }
+
             todo.complete = !todo.complete;
             const updated = await updateTodo(todo);
 
