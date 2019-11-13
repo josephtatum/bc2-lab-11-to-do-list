@@ -1,5 +1,4 @@
 import Component from '../Component.js';
-import { updateTodo, removeTodo } from '../services/todo-api.js';
 
 class TodoItem extends Component {
 
@@ -7,24 +6,27 @@ class TodoItem extends Component {
 
         const todo = this.props.todo;
         const onUpdate = this.props.onUpdate;
-
+        const onRemove = this.props.onRemove;
+        
         dom.innerHTML = todo.task;
 
         let markCompleteButton = document.createElement('button');
-        markCompleteButton.textContent = 'Mark as Complete';
+
+        if (!todo.complete) {
+            markCompleteButton.textContent = 'Complete';
+            dom.style.textDecoration = 'line-through';
+        } else {
+            markCompleteButton.textContent = 'Mark as Complete';
+            dom.style.textDecoration = 'none';
+        }
+        
         dom.appendChild(markCompleteButton);
 
         markCompleteButton.addEventListener('click', async () => {
-            if (!todo.complete) {
-                markCompleteButton.textContent = 'Complete';
-                dom.style.textDecoration = 'line-through';
-            } else {
-                markCompleteButton.textContent = 'Mark as Complete';
-                dom.style.textDecoration = 'none';
-            }
 
+            
             todo.complete = !todo.complete;
-            const updated = await updateTodo(todo);
+            onUpdate(todo);
 
         });
 
@@ -33,7 +35,13 @@ class TodoItem extends Component {
         dom.appendChild(deleteButton);
 
         deleteButton.addEventListener('click', () => {
+            const confirmed = confirm('Are you sure youd like to delete this todo?');
             
+            if (confirmed) {  
+                onRemove(todo);
+            } else {
+                return;
+            }
         });
     }
 

@@ -1,5 +1,4 @@
 import Component from '../Component.js';
-import { addTodo } from '../services/todo-api.js';
 
 class AddTodo extends Component {
 
@@ -17,9 +16,7 @@ class AddTodo extends Component {
             };
 
             try {
-                const saved = await addTodo(newTodo);
-                // this only runs if no error:
-                window.location = `todo.html`;
+                await onAdd(newTodo);
             }
             catch (err) {
                 console.log(err);

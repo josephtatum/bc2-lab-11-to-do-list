@@ -23,10 +23,9 @@ class TodoApp extends Component {
                     const saved = await addTodo(todo);
                     // this only runs if no error:
                     const todos = this.state.todos;
-                    console.log(todos);
                     todos.push(saved);
 
-                    todos.update({ todos });
+                    todoList.update({ todos });
                 }
 
                 catch (err) {
@@ -36,27 +35,24 @@ class TodoApp extends Component {
         });
         main.appendChild(addToDo.renderDOM());
 
-        const toDoList = new TodoList({
+        const todoList = new TodoList({
             todos: [],
             onUpdate: async todo => {
                 loading.update({ loading: true });
-                // clear prior error
                 error.textContent = '';
-
-                console.log(this.state.todos);
 
                 try {
                     // part 1: do work on the server
-                    const updated = await updateTodo(todo);
+                    await updateTodo(todo);
                     // part 2: integrate back into our list
                     const todos = this.state.todos;
-                    // find the index of this todo:
-                    const index = todos.indexOf(todo);
-                    // replace with updated object from server:
-                    todos.splice(index, 1, updated);
-
+                    // // find the index of this todo:
+                    // const index = todos.indexOf(todo);
+                    // // replace with updated object from server:
+                    // todos.splice(index, 1, updated);
+                    
                     // part 3: tell component to update
-                    toDoList.update({ todos });
+                    todoList.update({ todos });
                 }
                 catch (err) {
                     // display error
@@ -65,14 +61,41 @@ class TodoApp extends Component {
                 finally {
                     loading.update({ loading: false });
                 }
+            },
+            onRemove: async todo => {
+                loading.update({ loading: true });
+                error.textContent = '';
+
+                try {
+                    
+                    await removeTodo(todo.id);
+
+                    const todos = this.state.todos;
+                    // find the index of this type:
+                    const index = todos.indexOf(todo);
+                    // remove from the list
+                    todos.splice(index, 1);
+                    console.log(todos);
+                    
+                    todoList.update({ todos });
+                }
+
+                catch (err) {
+                    console.log(err);
+                }
+                finally {
+                    loading.update({ loading: false });
+                }
             }
         });
-        main.appendChild(toDoList.renderDOM());
+
+        main.appendChild(todoList.renderDOM());
 
         // initial todo load:
         try {
             const todos = await getTodos();
-            toDoList.update({ todos });
+            this.state.todos = todos;
+            todoList.update({ todos });
         }
         catch (err) {
             // display error...
