@@ -10,3 +10,27 @@ body {
     box-sizing: border-box;
 }
 
+form {
+    margin: 20px 0 50px;
+}
+
+form input {
+    font-size: 17px;
+    border-radius: 2px;
+    border: 0;
+    padding: 10px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.todo-list li {
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.todo-list li button {
+    margin-left: 5px;
+}

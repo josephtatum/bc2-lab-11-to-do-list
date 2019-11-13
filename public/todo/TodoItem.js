@@ -12,8 +12,8 @@ class TodoItem extends Component {
 
         let markCompleteButton = document.createElement('button');
 
-        if (!todo.complete) {
-            markCompleteButton.textContent = 'Complete';
+        if (todo.complete) {
+            markCompleteButton.textContent = 'Completed';
             dom.style.textDecoration = 'line-through';
         } else {
             markCompleteButton.textContent = 'Mark as Complete';

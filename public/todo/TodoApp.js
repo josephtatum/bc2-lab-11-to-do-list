@@ -15,7 +15,7 @@ class TodoApp extends Component {
         const error = dom.querySelector('.error');
 
         const loading = new Loading({ loading: true });
-        main.appendChild(loading.renderDOM());
+        dom.appendChild(loading.renderDOM());
 
         const addToDo = new AddTodo({
             onAdd: async (todo) => {
@@ -112,10 +112,12 @@ class TodoApp extends Component {
                 <!-- header goes here -->
                 <!-- show errors: -->
                 <p class="error"></p>
-                <main>
-                    <!-- add todo goes here -->
-                    <!-- todo list goes here -->
-                </main>
+                <div class="flex-container">
+                    <main>
+                        <!-- add todo goes here -->
+                        <!-- todo list goes here -->
+                    </main>
+                </div>
             </div>
         `;
     }
