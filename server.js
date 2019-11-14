@@ -63,8 +63,10 @@ app.get('/api/todos', async (req, res) => {
 
     try {
         const todos = await client.query(`
-            SELECT * FROM todos
-        `);
+           SELECT *
+           FROM todos
+           WHERE user_id=$1
+       `, [req.userId]);
 
         res.json(todos.rows);
     }
@@ -79,14 +81,14 @@ app.get('/api/todos', async (req, res) => {
 
 app.post('/api/todos', async (req, res) => {
     const todo = req.body;
-    
     try {
         const result = await client.query(`
-            INSERT INTO todos (task, complete)
-            VALUES ($1, $2)
+            INSERT INTO todos (task, complete, user_id)
+            VALUES ($1, $2, $3)
+
             RETURNING *;
         `,
-        [todo.task, todo.complete]);
+        [todo.task, todo.complete, req.userId]);
 
         res.json(result.rows[0]);
     }
