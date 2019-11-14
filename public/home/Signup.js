@@ -4,19 +4,18 @@ class Signup extends Component {
 
     onRender(form) {
 
-        const onSignUp = this.props.OnSignUp;
-
+        const onSignUp = this.props.onSignUp;
+        
 
         form.addEventListener('submit', event => {
             event.preventDefault();
-
             const formData = new FormData(form);
             const user = {
-                display_name: formData.get('name'),
                 email: formData.get('email'),
-                hash: formData.get('password')
+                password: formData.get('password'),
+                display_name: formData.get('name')
             };
-
+            
             onSignUp(user);
         });
     }

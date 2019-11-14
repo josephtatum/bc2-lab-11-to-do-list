@@ -4,8 +4,7 @@ class Signin extends Component {
 
     onRender(form) {
         
-        const onSignIn = this.props.OnSignIn;
-        
+        const onSignIn = this.props.onSignIn;
 
         form.addEventListener('submit', event => {
             event.preventDefault();

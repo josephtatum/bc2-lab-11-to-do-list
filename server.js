@@ -17,7 +17,7 @@ const createAuthRoutes = require('./lib/auth/create-auth-routes');
 const authRoutes = createAuthRoutes({
     selectUser(email) {
         return client.query(`
-            SELECT id, email, hash 
+            SELECT id, email, hash, display_name
             FROM users
             WHERE email = $1;
         `,
@@ -25,12 +25,13 @@ const authRoutes = createAuthRoutes({
         ).then(result => result.rows[0]);
     },
     insertUser(user, hash) {
+        
         return client.query(`
-            INSERT into users (email, hash)
-            VALUES ($1, $2)
+            INSERT into users (email, hash, display_name)
+            VALUES ($1, $2, $3)
             RETURNING id, email;
         `,
-        [user.email, hash]
+        [user.email, hash, user.display_name]
         ).then(result => result.rows[0]);
     }
 });
@@ -57,47 +58,6 @@ app.get('/api/test', (req, res) => {
     });
 });
 
-app.post('/api/signin', async (req, res) => {
-    const todo = req.body;
-
-    try {
-        const result = await client.query(`
-            INSERT INTO todos (task, complete)
-            VALUES ($1, $2)
-            RETURNING *;
-        `,
-            [todo.task, todo.complete]);
-
-        res.json(result.rows[0]);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({
-            error: err.message || err
-        });
-    }
-});
-
-app.post('/api/signup', async (req, res) => {
-    const todo = req.body;
-
-    try {
-        const result = await client.query(`
-            INSERT INTO todos (task, complete)
-            VALUES ($1, $2)
-            RETURNING *;
-        `,
-            [todo.task, todo.complete]);
-
-        res.json(result.rows[0]);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({
-            error: err.message || err
-        });
-    }
-});
 
 app.get('/api/todos', async (req, res) => {
 
