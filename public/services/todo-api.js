@@ -12,6 +12,28 @@ async function fetchWithError(url, options) {
     }
 }
 
+export function signUp(user) {
+    const url = `${URL}/auth/signup`;
+    return fetchWithError(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    });
+}
+
+export function signIn(credentials) {
+    const url = `${URL}/auth/signin`;
+    return fetchWithError(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials)
+    });
+}
+
 export function getTodos() {  
     const url = `${URL}/todos`;
     return fetchWithError(url);

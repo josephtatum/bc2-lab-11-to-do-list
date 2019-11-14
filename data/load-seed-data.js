@@ -1,4 +1,5 @@
 const client = require('../lib/client');
+const createAuthRoutes = require('../lib/auth/create-auth-routes');
 // import our seed data:
 const todos = require('./todos');
 
@@ -17,6 +18,8 @@ async function run() {
                 `,
                 [todo.task, todo.complete]);
             })
+
+            
         );
 
         console.log('seed data load complete');
