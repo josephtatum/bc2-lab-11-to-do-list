@@ -48,7 +48,7 @@ class TodoApp extends Component {
                     const todos = this.state.todos;
                     // // find the index of this todo:
                     // const index = todos.indexOf(todo);
-                    // // replace with updated object from server:
+                    // // // replace with updated object from server:
                     // todos.splice(index, 1, updated);
                     
                     // part 3: tell component to update
