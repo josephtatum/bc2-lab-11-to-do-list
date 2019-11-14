@@ -6,9 +6,9 @@ import { signUp as userSignUp, signIn as userSignIn } from '../services/todo-api
 
 function success(user) {
     localStorage.setItem('TOKEN', user.token);
-    localStorage.setItem('USER', user.displayName);
+    localStorage.setItem('USER', user.display_name);
     const searchParams = new URLSearchParams(location.search);
-    location = searchParams.get('redirect') || './cat-list.html';
+    location = searchParams.get('redirect') || './todo.html';
 }
 
 class App extends Component {

@@ -7,7 +7,7 @@ class AddTodo extends Component {
         
         form.addEventListener('submit', async event => {
             event.preventDefault();
-
+            debugger;
             const formData = new FormData(form);
             
             const newTodo = {

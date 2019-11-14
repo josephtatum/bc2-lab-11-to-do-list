@@ -12,7 +12,7 @@ class Signin extends Component {
             const formData = new FormData(form);
             const user = {
                 email: formData.get('email'),
-                hash: formData.get('password')
+                password: formData.get('password')
             };
 
             onSignIn(user);
